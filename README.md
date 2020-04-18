@@ -3,7 +3,7 @@
 
 - Siddharth Dathathreya
 - Sai Ashish
-- GV Varsha
+- GV Sree Varsha
 - Devi Priya
 - Nihanth
 - Sindhu 
