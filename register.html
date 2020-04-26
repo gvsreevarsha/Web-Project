@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Register</title>
+<link rel='stylesheet' href='bootstrap1.min.css'>
+<link rel="stylesheet" type="text/css">
+<style>
+#login-form{ 
+border: 3 px solid #eeeee; 
+padding:9px 9px;
+width:300px; 
+border-radius:5px; 
+}
+</style>
+</head>
+<header>
+	<div class="header">
+		<div class="container2">
+			<div class="col-md-12" style="background-color: #fffbbb; padding: 10px;">
+				<div class="col-md-12">
+					<div class="col-md-1 col-md-offset-9" align="center"><a href="login.html" style="color: black; text-decoration: none;">Login</a></div>
+					<div class="col-md-1" align="center"><a href="register.html" style="color: black; text-decoration: none;">Register</a></div>
+					<div class="col-md-1" align="center"><a href="homepage.html" style="color: black; text-decoration: none;">Logout</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">&nbsp</div>
+	<div class="col-md-12">&nbsp</div>
+	<div class="col-md-12">&nbsp</div>
+</header>
+<body>
+	<h1 align="center"><b>Register</b></h1>
+	<div align="center">
+		<br>
+		<form id="login-form" method="post" action="">
+			<table border="0.5" id="t01" >
+				<tr>
+					<td><b><label for="roll">Roll Number</label></b></td>
+					<td><input type="text" name="roll" id="roll"></td>
+				</tr>
+				<tr>
+					<td><b><label for="name">Name</label></b></td>
+					<td><input type="text" name="name" id="name"></td>
+				</tr>
+				<tr>
+					<td><b><label for="user_pass">Password</label></b></td>
+					<td><input type="password" name="user_pass" id="user_pass"></input></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Submit" />
+					<td><button><a href="login.html">Back</a></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
