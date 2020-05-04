@@ -1,0 +1,2467 @@
+<?php
+session_start();
+
+$con = mysqli_connect('localhost','root','',);
+
+mysqli_select_db($con, 'gb_dotp');
+
+$name = $_SESSION['username'];
+
+$sql="select * from gb_dotp_mdb where Roll_No='$name'";
+                      $result=mysqli_query($con,$sql);
+                      $resultCheck=mysqli_num_rows($result);
+                      $row=mysqli_fetch_assoc($result);
+$_SESSION['rollno'] = $row['Roll_No'];
+
+$sql1="select * from gb_dotp_cocubes where Roll_No='$name'";
+                      $result1=mysqli_query($con,$sql1);
+                      $resultCheck1=mysqli_num_rows($result1);
+                      $row1=mysqli_fetch_assoc($result1);
+$_SESSION['rollno'] = $row1['Roll_No'];
+
+/*
+$sql2="select * from hashedin where Roll_No='$name'";
+                      $result2=mysqli_query($con,$sql2);
+                      $resultCheck2=mysqli_num_rows($result2);
+                      $row2=mysqli_fetch_assoc($result2);
+$_SESSION['rollno'] = $row2['Roll_No'];
+
+$sql3="select * from ihsmarkit where Roll_No='$name'";
+                      $result3=mysqli_query($con,$sql3);
+                      $resultCheck3=mysqli_num_rows($result3);
+                      $row3=mysqli_fetch_assoc($result3);
+$_SESSION['rollno'] = $row3['Roll_No'];
+
+$sql4="select * from tcsdigital where Roll_No='$name'";
+                      $result4=mysqli_query($con,$sql4);
+                      $resultCheck4=mysqli_num_rows($result4);
+                      $row4=mysqli_fetch_assoc($result4);
+$_SESSION['rollno'] = $row4['Roll_No'];
+
+$sql6="select * from nineleaps where Roll_No='$name'";
+                      $result6=mysqli_query($con,$sql6);
+                      $resultCheck6=mysqli_num_rows($result6);
+                      $row6=mysqli_fetch_assoc($result6);
+$_SESSION['rollno'] = $row6['Roll_No'];
+
+$sql5="select * from std_attendance where Std_ID='$name'";
+                      $result5=mysqli_query($con,$sql5);
+                      $resultCheck5=mysqli_num_rows($result5);
+                      $row5=mysqli_fetch_assoc($result5);
+$_SESSION['rollno'] = $row5['Std_ID'];
+
+$sql7="select * from crt_attendance where Roll_No='$name'";
+                      $result7=mysqli_query($con,$sql7);
+                      $resultCheck7=mysqli_num_rows($result7);
+                      $row7=mysqli_fetch_assoc($result7);
+$_SESSION['rollno'] = $row7['Roll_No'];
+*/
+$sql8="select * from gb_dotp_ddc where Roll_No='$name'";
+                      $result8=mysqli_query($con,$sql8);
+                      $resultCheck8=mysqli_num_rows($result8);
+                      $row8=mysqli_fetch_assoc($result8);
+$_SESSION['rollno'] = $row8['Roll_No'];
+
+
+$sql9="select * from gb_dotp_ita where Roll_No='$name'";
+                      $result9=mysqli_query($con,$sql9);
+                      $resultCheck9=mysqli_num_rows($result9);
+                      $row9=mysqli_fetch_assoc($result9);
+$_SESSION['rollno'] = $row9['Roll_No'];
+
+
+
+
+$query = "select * from gb_dotp_ita where Roll_No='$name' && Date BETWEEN '2018-07-02' AND '2018-07-07'";
+
+$result=mysqli_query($con,$query);
+
+
+$query1 = "select * from gb_dotp_ita where Date BETWEEN '2018-07-02' AND '2018-07-07'";
+$result1=mysqli_query($con,$query1);
+
+
+$query2 = "select * from gb_dotp_ita where Roll_No='$name' && Date BETWEEN '2018-11-03' AND '2018-11-08'";
+$result2=mysqli_query($con,$query2);
+
+$query3 = "select * from gb_dotp_ita where Date BETWEEN '2018-11-03' AND '2018-11-08'";
+$result3=mysqli_query($con,$query3);
+
+
+$count=0;
+$count1=0;
+$c=0;
+$c1=0;
+$count2=0;
+$c2=0;
+$count3=0;
+$c3=0;
+
+
+while($row11 = mysqli_fetch_array($result))
+{
+  if(!strcmp($row11[4],'P'))
+        {
+      $count=$count+1;
+        }
+$c=$c+1;
+}
+$k="{$count}"*100/"{$c}";
+
+while($row22 = mysqli_fetch_array($result1))
+{
+if(!strcmp($row22[4],'P'))
+{
+$count1=$count1+1;
+}
+$c1=$c1+1;
+}
+$k1="{$count1}"*100/"{$c1}";
+
+while($row33 = mysqli_fetch_array($result2))
+{
+  if(!strcmp($row33[4],'P'))
+        {
+        $count2=$count2+1;
+        }
+$c2=$c2+1;
+}
+$k2="{$count2}"*100/"{$c2}";
+
+
+while($row44 = mysqli_fetch_array($result3))
+{
+if(!strcmp($row44[4],'P'))
+{
+$count3=$count3+1;
+}
+$c3=$c3+1;
+}
+$k3="{$count3}"*100/"{$c3}";
+
+$query_cjs = "select * from gb_dotp_cjs where Roll_No='$name'";
+
+$result_cjs=mysqli_query($con,$query_cjs);
+
+
+while($row_cjs = mysqli_fetch_array($result_cjs))
+{
+    
+    $Analyst = $row_cjs[1];
+    $Sales = $row_cjs[2];
+    $Plant = $row_cjs[3];
+    $RD = $row_cjs[4];
+    $N_Engineer = $row_cjs[5];
+    $Operation = $row_cjs[6];
+    $Developer = $row_cjs[7];
+    $S_Engineer = $row_cjs[8];
+    $S_Tester = $row_cjs[9];
+
+    $JFC = ("{$Analyst}"+"{$Sales}"+"{$Plant}"+"{$RD}"+
+    "{$N_Engineer}"+"{$Operation}"+"{$Developer}"+"{$S_Engineer}"+"{$S_Tester}")/9;
+
+    $JFC = floor($JFC);
+
+}
+
+$query_cdt1 = "select * from gb_dotp_cdt1 where Roll_No='$name'";
+
+$result_cdt1=mysqli_query($con,$query_cdt1);
+
+$c1_C=0;
+$c1_E=0;
+$c1_A=0;
+$c1_W=0;
+$c1_G=0;
+$c1_T=0;
+$c1_H=0;
+
+while($row_cdt1 = mysqli_fetch_array($result_cdt1))
+{
+    $Company= $row_cdt1[2];
+    $Elligible = $row_cdt1[3];
+    $Attendance = $row_cdt1[4];
+    $WTC = $row_cdt1[5];
+    $GDC = $row_cdt1[6];
+    $TRC = $row_cdt1[7];
+    $HRC = $row_cdt1[8];
+
+    ?>
+    <?php
+
+    if(strcmp($Elligible, 'E')==0)
+    {
+        $c1_E=$c1_E+1;
+    }
+    if(strcmp($Attendance, 'P')==0)
+    {
+        $c1_A=$c1_A+1;
+    }
+    if(strcmp($WTC, 'Y')==0)
+    {
+        $c1_W=$c1_W+1;
+    }
+    if(strcmp($GDC, 'Y')==0)
+    {
+        $c1_G=$c1_G+1;
+    }
+    if(strcmp($TRC, 'Y')==0)
+    {
+        $c1_T=$c1_T+1;
+    }
+    if(strcmp($HRC, 'Y')==0)
+    {
+        $c1_H=$c1_H+1;
+    }
+    $c1_C=$c1_C+1;
+}
+
+$query_cdt2 = "select * from gb_dotp_cdt2 where Roll_No='$name'";
+
+$result_cdt2=mysqli_query($con,$query_cdt2);
+
+$c2_C=0;
+$c2_E=0;
+$c2_A=0;
+$c2_W=0;
+$c2_G=0;
+$c2_T=0;
+$c2_H=0;
+while($row_cdt2 = mysqli_fetch_array($result_cdt2))
+{
+    $Company= $row_cdt2[2];
+    $Elligible = $row_cdt2[3];
+    $Attendance = $row_cdt2[4];
+    $WTC = $row_cdt2[5];
+    $GDC = $row_cdt2[6];
+    $TRC = $row_cdt2[7];
+    $HRC = $row_cdt2[8];
+
+    ?>
+    <?php
+
+    if(strcmp($Elligible, 'E')==0)
+    {
+        $c2_E=$c2_E+1;
+    }
+    if(strcmp($Attendance, 'P')==0)
+    {
+        $c2_A=$c2_A+1;
+    }
+    if(strcmp($WTC, 'Y')==0)
+    {
+        $c2_W=$c2_W+1;
+    }
+    if(strcmp($GDC, 'Y')==0)
+    {
+        $c2_G=$c2_G+1;
+    }
+    if(strcmp($TRC, 'Y')==0)
+    {
+        $c2_T=$c2_T+1;
+    }
+    if(strcmp($HRC, 'Y')==0)
+    {
+        $c2_H=$c2_H+1;
+    }
+    $c2_C=$c2_C+1;
+}
+
+$query_cdt3 = "select * from gb_dotp_cdt3 where Roll_No='$name'";
+
+$result_cdt3=mysqli_query($con,$query_cdt3);
+
+$c3_C=0;
+$c3_E=0;
+$c3_A=0;
+$c3_W=0;
+$c3_G=0;
+$c3_T=0;
+$c3_H=0;
+while($row_cdt3 = mysqli_fetch_array($result_cdt3))
+{
+    $Company= $row_cdt3[2];
+    $Elligible = $row_cdt3[3];
+    $Attendance = $row_cdt3[4];
+    $WTC = $row_cdt3[5];
+    $GDC = $row_cdt3[6];
+    $TRC = $row_cdt3[7];
+    $HRC = $row_cdt3[8];
+
+    ?>
+    <?php
+
+    if(strcmp($Elligible, 'E')==0)
+    {
+        $c3_E=$c3_E+1;
+    }
+    if(strcmp($Attendance, 'P')==0)
+    {
+        $c3_A=$c3_A+1;
+    }
+    if(strcmp($WTC, 'Y')==0)
+    {
+        $c3_W=$c3_W+1;
+    }
+    if(strcmp($GDC, 'Y')==0)
+    {
+        $c3_G=$c3_G+1;
+    }
+    if(strcmp($TRC, 'Y')==0)
+    {
+        $c3_T=$c3_T+1;
+    }
+    if(strcmp($HRC, 'Y')==0)
+    {
+        $c3_H=$c3_H+1;
+    }
+    $c3_C=$c3_C+1;
+}
+
+$query_cdt4 = "select * from gb_dotp_cdt4 where Roll_No='$name'";
+
+$result_cdt4=mysqli_query($con,$query_cdt4);
+
+$c4_C=0;
+$c4_E=0;
+$c4_A=0;
+$c4_W=0;
+$c4_G=0;
+$c4_T=0;
+$c4_H=0;
+while($row_cdt4 = mysqli_fetch_array($result_cdt4))
+{
+    $Company= $row_cdt4[2];
+    $Elligible = $row_cdt4[3];
+    $Attendance = $row_cdt4[4];
+    $WTC = $row_cdt4[5];
+    $GDC = $row_cdt4[6];
+    $TRC = $row_cdt4[7];
+    $HRC = $row_cdt4[8];
+
+    ?>
+    <?php
+
+    if(strcmp($Elligible, 'E')==0)
+    {
+        $c4_E=$c4_E+1;
+    }
+    if(strcmp($Attendance, 'P')==0)
+    {
+        $c4_A=$c4_A+1;
+    }
+    if(strcmp($WTC, 'Y')==0)
+    {
+        $c4_W=$c4_W+1;
+    }
+    if(strcmp($GDC, 'Y')==0)
+    {
+        $c4_G=$c4_G+1;
+    }
+    if(strcmp($TRC, 'Y')==0)
+    {
+        $c4_T=$c4_T+1;
+    }
+    if(strcmp($HRC, 'Y')==0)
+    {
+        $c4_H=$c4_H+1;
+    }
+    $c4_C=$c4_C+1;
+}
+
+$c11=$c1_C+$c2_C+$c3_C+$c4_C;
+$c22=$c1_E+$c2_E+$c3_E+$c4_C;
+$c33=$c1_A+$c2_A+$c3_A+$c4_A;
+$c44=$c1_W+$c2_W+$c3_W+$c4_W;
+$c55=$c1_G+$c2_G+$c3_G+$c4_G;
+$c66=$c1_T+$c2_T+$c3_T+$c4_T;
+$c77=$c1_H+$c2_H+$c3_H+$c4_H;
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+       <meta charset="utf-8">
+    	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<style>html,body,#myChart{height: 100%;width: 100%;}
+zing-grid[loading]{height:100%;}
+#myChart2020 {
+  height:200%;
+  width:100%;
+  min-height:300px;
+}
+#myChart2021 {
+  height:50%;
+  width:100%;
+  min-height:300px;
+}
+.zc-ref {
+  display:none;
+}
+zing-grid[loading]{height:100%;}
+
+   
+</style>
+<style type="text/css">
+.tab2 tr th{
+  border:1px solid black;  
+}
+table {
+  border-collapse: collapse;
+  
+  width: 85%;
+}
+
+th {
+  height: 50px;
+}
+
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:nth-child(odd){background-color: #f2f2f2;}
+
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  theme: "light2",
+
+  axisY:{
+    includeZero: "True"
+  },
+    legend: {
+    cursor:"pointer",
+    itemclick: toggleDataSeries
+  },
+  data: [{    
+      legendText: "DCT",
+    color: "blue",
+    showInLegend: true,     
+    type: "line",
+       name: "DCT :",                           //indexLabel: "{y}", //Shows y value on all Data Points
+
+    dataPoints: [
+      { x: 1,y: <?php echo $row8['DCT1']; ?> },
+      { x: 2,y: <?php echo $row8['DCT2']; ?>},
+      {x: 3, y: <?php echo $row8['DCT3']; ?> },
+      { x: 4,y: <?php echo $row8['DCT4']; ?>},
+      {x: 5, y: <?php echo $row8['DCT5']; ?> },
+      { x: 6,y: <?php echo $row8['DCT6']; ?> },
+      { x: 7,y: <?php echo $row8['DCT7']; ?>},
+      { x: 8,y: <?php echo $row8['DCT8']; ?>}
+  
+    ]
+  },
+  {
+  	    legendText: "Domain",
+    color: "green",
+    showInLegend: true, 
+ type: "line",
+           name: "Domain :",                       //indexLabel: "{y}", //Shows y value on all Data Points
+
+    dataPoints: [
+      { x: 1,y: <?php echo $row8['Domain1']; ?> },
+      { x: 2,y: <?php echo $row8['Domain2']; ?>},
+      {x: 3, y: <?php echo $row8['Domain3']; ?> },
+      { x: 4,y: <?php echo $row8['Domain4']; ?>},
+      {x: 5, y: <?php echo $row8['Domain5']; ?> },
+      { x: 6,y: <?php echo $row8['Domain6']; ?> },
+      { x: 7,y: <?php echo $row8['Domain7']; ?>},
+      { x: 8,y: <?php echo $row8['Domain8']; ?>},
+  
+    ]
+
+
+
+  },
+  {
+ type: "line",
+   	    legendText: "Coding",
+    color: "orange",
+    showInLegend: true,                                 //indexLabel: "{y}", //Shows y value on all Data Points
+name: "Coding :",
+
+    dataPoints: [
+      { x: 1,y: <?php echo $row8['Coding1']; ?> },
+      { x: 2,y: <?php echo $row8['Coding2']; ?>},
+      {x: 3, y: <?php echo $row8['Coding3']; ?> },
+      { x: 4,y: <?php echo $row8['Coding4']; ?>},
+      {x: 5, y: <?php echo $row8['Coding5']; ?> },
+  
+    ]
+
+
+
+  }]
+});
+
+
+var chart1 = new CanvasJS.Chart("chartContainer1", {
+  animationEnabled: true,
+ 
+  toolTip: {
+    shared: true
+  },
+  legend: {
+    cursor:"pointer",
+    itemclick: toggleDataSeries
+  },
+  data: [{
+    type: "column",
+    name: "Individual Score :",
+    legendText: "Individual Analysis",
+    color: "#29629F",
+    showInLegend: true, 
+    dataPoints:[
+      { label: "CRT1", y: <?php echo "{$k}"; ?> },
+      { label: "CRT2", y: <?php echo "{$k2}"; ?> },
+      { label: "CRT3", y: 45 },
+      { label: "CRT4", y: 75 },
+      { label: "CRT5", y: 75 },
+      { label: "TT1", y: 80 },
+      { label: "TT2", y: 75 },
+      { label: "TT3", y: 36 },
+      { label: "TT4", y: 70 },
+      { label: "TT4", y: 90 }
+    ]
+  },
+  {
+    type: "column", 
+    name: "Average Score :",
+    legendText: "Average Analysis",
+    color: "#a9a9a9",
+    showInLegend: true,
+    dataPoints:[
+      { label: "CRT1", y: <?php echo "{$k1}"; ?> },
+      { label: "CRT2", y: <?php echo "{$k3}"; ?> },
+      { label: "CRT3", y: 65 },
+      { label: "CRT4", y: 75 },
+      { label: "CRT5", y: 55 },
+      { label: "TT1", y: 85 },
+      { label: "TT2", y: 75 },
+      { label: "TT3", y: 45 },
+      { label: "TT4", y: 85 },
+      { label: "TT5", y: 35 }
+    ]
+  }]
+});
+
+
+function toggleDataSeries(e) {
+  if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+    e.dataSeries.visible = false;
+  }
+  else {
+    e.dataSeries.visible = true;
+  }
+  chart1.render();
+}
+
+
+
+
+
+chart.render();
+chart1.render();
+
+}
+</script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+</head>
+<body class="sidebar-collapse">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #303030;">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+      <h4 style="color: white;">   
+      <img src="dist/img/gitam_logo.jpg" alt="AdminLTE Logo" class="brand-image elevation-3"
+           style="opacity: .8" height="100px" width="100px">
+      &nbsp;&nbsp;GITAM, Bengaluru
+   </h4>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+       <h1>&emsp;&emsp;&emsp;&emsp;&emsp;</h1>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        
+      </li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        
+      </div>
+    </form>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+
+  <li class="nav-item">
+      	<li class="nav-item d-none d-sm-inline-block">
+      		<br>
+      		<br>
+      		<br>
+      	<a href="index.html">	<h5 style="color: lightgreen; vertical-align: bottom;">Dashboard &nbsp;&nbsp;&emsp;</h5></a>
+      </li>
+  </li>
+
+  <li class="nav-item">
+        <li class="nav-item d-none d-sm-inline-block">
+          <br>
+          <br>
+          <br>
+          <h5 style="color: lightgreen; vertical-align: bottom;">Personal Details &nbsp;&nbsp;&emsp;</h5>
+      </li>
+  </li>
+
+          <li class="nav-item">
+      	<li class="nav-item d-none d-sm-inline-block">
+      		<br>
+      		<br>
+      		<br>
+      		<h5 style="color: lightgreen; vertical-align: bottom;">Calendar &nbsp;&nbsp;&emsp;</h5>
+      </li>
+  </li>
+    
+
+       <li class="nav-item">
+      	<li class="nav-item d-none d-sm-inline-block">
+      		<br>
+      		<br>
+      		<br>
+      		<h5 style="color: lightgreen; vertical-align: bottom;">Logout &nbsp;&nbsp;&emsp;</h5>
+      </li>
+  </li>
+    
+      <li class="nav-item">
+        <br>
+          <h2 style="color: white; vertical-align: bottom; font-size: 25px; font-family: candara" >
+            <strong>Welcome <br> <?php  echo $row['F_Name']; ?></strong></h2>
+
+      	<li class="nav-item d-none d-sm-inline-block">
+
+        <div class="image">
+
+          <img src="https://doeresults.gitam.edu/gitamhallticket/img.aspx?id=<?php 
+                      echo $row['Roll_No']; ?>" alt="AdminLTE Logo" class="brand-image elevation-3"
+           style="opacity: .8" height="100px" width="100px">
+         
+        </div>
+    </li>
+</li>
+
+  
+    </ul>
+  </nav>
+
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+ 
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <br>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+         
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><?php echo $row['_Marks_10th']; ?>%</h3>
+
+                <p>Tenth Percentage</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-bo bg-success"><br/></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?php echo $row['_Marks_12th']; ?>%</h3>
+
+                <p>Intermediate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-bo bg-warning"><br/></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo $row['Aggregate_Graduation']; ?> (<?php echo $row['Pass_Category']; ?>)</h3>
+
+                <p>B.Tech</p>
+              </div>
+             <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <section class="col-lg-6 connectedSortable">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-pie mr-1"></i>
+                  Job Fit Curve
+                </h3>
+
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                  <!-- Morris chart - Sales -->
+                  <div class="chart tab-pane active" id="revenue-chart"
+                  style="position: absolute; height: 250px; width: 200px;">
+                                    		<div id='myChart'></div>
+	<script>ZC.LICENSE=["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];var myConfig7 = {
+  "type":"gauge",
+  "scale-r":{
+    "aperture":200,
+    "values":"0:100:20",
+    "center":{
+      "size":5,
+ 	    "background-color":"#66CCFF #FFCCFF",
+ 	    "border-color":"none"
+    },
+    "ring":{
+      "size":10,
+      "rules":[
+        {
+          "rule":"%v >= 0 && %v <= 20",
+ 	        "background-color":"red"
+        },
+        {
+          "rule":"%v >= 20 && %v <= 40",
+ 	        "background-color":"orange"
+        },
+        {
+          "rule":"%v >= 40 && %v <= 60",
+ 	        "background-color":"yellow"
+        },
+        {
+          "rule":"%v >= 60 && %v <= 80",
+ 	        "background-color":"green"
+        },
+        {
+          "rule":"%v >= 80 && %v <=100",
+          "background-color":"blue"
+        }
+      ]
+    },
+    "labels":["0","20","40","60","80","100"]  //Scale Labels
+  },
+  "plot":{
+    "csize":"5%",
+    "size":"100%",
+    "background-color":"#000000"
+  },
+  "series":[
+    {"values":[<?php echo "{$JFC}"; ?>]}
+  ]
+};
+
+zingchart.render({ 
+	id : 'myChart', 
+	data : myConfig7, 
+	height : "120%", 
+	width: "100%"
+});</script>           
+                   </div>
+
+                    <strong>
+                    	<br/>
+                    	<br/>
+                    	<br/>
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                      <br><br><br><h2></h2>Description :
+                    You are <?php echo "{$JFC}"; ?>% suitable <br/>to the industry with
+                    your current performance <br/>in all the tests
+                    conducted by T&P.
+
+                    </strong>
+
+               </div>
+
+
+
+
+
+                </div>
+
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </section>
+
+
+            <!-- DIRECT CHAT -->
+           
+            <!--/.direct-chat -->
+
+            <!-- TO DO List -->
+           
+            <!-- /.card -->
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-6 connectedSortable">
+
+            <!-- Map card -->
+
+            <div class="card">
+              <div class="card-header">
+
+                <h3 class="card-title">
+
+                  <i class="fa fa-briefcase"></i>
+                  &nbsp;&nbsp;Current Job Suitability
+                </h3>
+                <h1></h1>
+              </div>
+<!-- /.card-header -->
+              <!-- /.card-body-->
+              <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="<?php echo "{$Analyst}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Analyst</div></strong>
+                  </div>
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="<?php echo "{$Sales}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+
+                    <strong><div style="color: #29629F">Customer & Sales Executive</div></strong>
+                  </div>
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="<?php echo "{$Plant}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Graduate Engineer (Plant)  </div></strong>
+                  </div>
+              </div>
+          </div>
+           <div class="card-footer bg-transparent">
+                <div class="row">
+                  <div class="col-4 text-center">
+                   <input type="text" class="knob" data-readonly="true" value="<?php echo "{$RD}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Graduate Engineer (R&D)</div></strong>
+                  </div>
+                  <div class="col-4 text-center">
+                   <input type="text" class="knob" data-readonly="true" value="<?php echo "{$N_Engineer}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Network Engineer</div></strong>
+                  </div>
+                  <div class="col-4 text-center">
+                   <input type="text" class="knob" data-readonly="true" value="<?php echo "{$Operation}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Operations and Executive</div></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer bg-transparent">
+              <div class="row">
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                   <input type="text" class="knob" data-readonly="true" value="<?php echo "{$Developer}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                     <strong><div style="color: #29629F">Software Developer  </div></strong>
+                  </div>
+                  <!-- ./col -->
+                  <div class="col-4 text-center">
+                    <input type="text" class="knob" data-readonly="true" value="<?php echo "{$S_Engineer}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                    <strong><div style="color: #29629F">Software Engineer   </div></strong>
+                  </div>
+                  <div class="col-4 text-center">
+                   <input type="text" class="knob" data-readonly="true" value="<?php echo "{$S_Tester}"; ?>" data-width="60" data-height="60"
+                           data-fgColor="#29629F">
+                   <strong><div style="color: #29629F">Software Tester</div></strong>
+                  </div>
+                  <!-- ./col -->
+                 
+                </div>
+              </div>
+                <!-- /.row -->
+           <br> <br>
+
+              </div>
+              </div>
+          </section>
+
+
+
+
+
+<section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+         
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+
+<div class="card">
+
+              <div class="card-header">
+
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Cocubes Analysis
+                </h3>
+              </div>
+               <div class="card-body">
+                <div class="tab-content p-0">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                   <div id='myChart2020'></div>
+
+  <script>ZC.LICENSE=["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];var myConfig = {
+  type : 'radar',
+  plot : {
+    aspect : 'area',
+    animation: {
+      effect:3,
+      sequence:1,
+      speed:700
+    }
+  },
+  scaleV : {
+    visible : false
+  },
+  scaleK : {
+    values : '0:6:1',
+    labels : ['Analytical','Quantative','English','Domain', 'CF', 'Coding', 'WET' ],
+    item : {
+      fontColor : '#607D8B',
+      backgroundColor : "white",
+      borderColor : "#aeaeae",
+      borderWidth : 1,
+      padding : '5 10',
+      borderRadius : 10
+    },
+    refLine : {
+      lineColor : '#c10000'
+    },
+    tick : {
+      lineColor : '#59869c',
+      lineWidth : 2,
+      lineStyle : 'dotted',
+      size : 20
+    },
+    guide : {
+      lineColor : "#607D8B",
+      lineStyle : 'solid',
+      alpha : 0.3,
+      backgroundColor : "#c5c5c5 #718eb4"
+    }
+  },
+  series : [
+    {
+      values : [<?php echo $row1['PA1_Analytical']; ?>, <?php echo $row1['PA1_Quantitative']; ?>, <?php echo $row1['PA1_English']; ?>, <?php echo $row1['PA1_Domain']; ?>, <?php echo $row1['PA1_Computer_Fundamental']; ?>, <?php echo $row1['PA1_Coding']; ?>, <?php echo $row1['PA1_Written_English']; ?>],
+      text:'farm'
+    },
+    {
+      values : [20, 20, 54, 41, 41, 35, 75],
+      lineColor : '#53a534',
+      backgroundColor : '#689F38'
+    }
+  ]
+};
+
+zingchart.render({ 
+  id : 'myChart2020', 
+  data : myConfig, 
+  height: '100%', 
+  width: '100%' 
+});</script>
+</div>
+</div>
+</div>
+</div>
+
+
+          <!-- ./col -->
+
+          <!-- ./col -->
+
+          <!-- ./col -->
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+<section class="col-lg-6 connectedSortable">
+
+<div class="container-fluid">
+
+	<div class="row">
+
+<div class="col-lg-12">
+
+            <!-- TO DO List -->
+            <div class="card">
+
+              <div class="card-header">
+
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Amcat Analysis
+                </h3>
+              </div>
+
+               <div class="card-body">
+                <div class="tab-content p-0">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                   <div id='myChart2021' ></div>
+  <script>ZC.LICENSE=["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"];var myConfig = {
+  type : 'radar',
+  plot : {
+    aspect : 'area',
+    animation: {
+      effect:3,
+      sequence:1,
+      speed:700
+    }
+  },
+  scaleV : {
+    visible : false
+  },
+  scaleK : {
+    values : '0:6:1',
+    labels : ['English','Quantative Ability','Logical Ability','Automata', 'WriteX', 'Automatafix', 'Domain' ],
+    item : {
+      fontColor : '#607D8B',
+      backgroundColor : "white",
+      borderColor : "#aeaeae",
+      borderWidth : 1,
+      padding : '5 10',
+      borderRadius : 10
+    },
+    refLine : {
+      lineColor : '#c10000'
+    },
+    tick : {
+      lineColor : '#59869c',
+      lineWidth : 2,
+      lineStyle : 'dotted',
+      size : 20
+    },
+    guide : {
+      lineColor : "#607D8B",
+      lineStyle : 'solid',
+      alpha : 0.3,
+      backgroundColor : "#c5c5c5 #718eb4"
+    }
+  },
+  series : [
+    {
+      values : [70, 29, 88, 49, 61, 55, 75],
+      text:'farm'
+    },
+    {
+      values : [50, 59, 60, 21, 80, 35, 95],
+      lineColor : '#53a534',
+      backgroundColor : '#689F38'
+    }
+  ]
+};
+
+zingchart.render({ 
+  id : 'myChart2021', 
+  data : myConfig, 
+  height: '100%', 
+  width: '100%' 
+});</script>
+</div>
+</div>
+</div>
+
+               
+</div>
+</div>
+</div>
+
+
+	
+</div>
+               
+            <!-- /.card -->
+
+</section>
+
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+         
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+
+ <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Attendance Analysis
+                </h3>
+              </div>
+              <div class="card-header">
+
+             <center>
+              <br>
+<div id="chartContainer1" style="height: 500px; width: 95%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</center>
+<br>
+
+</div>
+
+
+</div>
+</div>
+
+
+<section class="col-lg-6 connectedSortable">
+
+<div class="container-fluid">
+
+	<div class="row">
+
+<div class="col-lg-12">
+
+
+            <!-- TO DO List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-line"></i>
+                  &nbsp;&nbsp;Scores Analysis
+                </h3>
+              </div>
+             <center>
+              <br>
+<div id="chartContainer" style="height: 500px; width: 95%;"></div>
+<br>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</center>
+<br>
+</div>
+               
+</div>
+</div>
+</div>
+</section>
+</div>
+
+	
+</div>
+               
+            <!-- /.card -->
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="col-lg-12 connectedSortable">
+            <!-- TO DO List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Placement Analysis
+                </h3>
+              </div>
+              <br>
+               <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+         
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            
+              <div class="inner">
+                <label for="" style="color: black">Total Number of Companies </label>
+           <span id="MainContent_lblcampus" class="form-control" readonly="true"><?php echo "{$c11}"; ?></span>
+            <br>
+             
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+           
+              <div class="inner">
+
+             <label for="" style="color: black">Number of Companies Elligible </label>
+            <span id="MainContent_lblcollege" class="form-control" readonly="true"><?php echo "{$c22}"; ?></span>
+
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+           
+              <div class="inner">
+               <label for="" style="color: black">Number of Companies Attended</label>
+            <span id="MainContent_lblcollege" class="form-control" readonly="true"><?php echo "{$c33}"; ?></span>
+        </div>
+          </div>
+          <!-- ./col -->
+        </div>
+    </div>
+</section>
+ <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+         
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            
+              <div class="inner">
+                <label for="" style="color: black">Number of Companies Test Cleared</label>
+           <span id="MainContent_lblcampus" class="form-control" readonly="true"><?php echo "{$c44}"; ?></span>
+         <br>
+             
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+      
+              <div class="inner">
+               <label for="" style="color: black">Number of Companies GD Cleared </label>
+            <span id="MainContent_lblcollege" class="form-control" readonly="true"><?php echo "{$c55}"; ?></span>
+        
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+           
+              <div class="inner">
+                 <label for="" style="color: black">Number of Companies TR Cleared</label>
+            <span id="MainContent_lblcollege" class="form-control" readonly="true"><?php echo "{$c66}"; ?></span>
+         
+            </div>
+          </div>
+
+           <div class="col-lg-4 col-6">
+            <!-- small box -->
+           
+              <div class="inner">
+                 <label for="" style="color: blue;">Number of Offers</label>
+           <span id="MainContent_lblcampus" class="form-control" readonly="true"><?php echo "{$c77}"; ?></span>
+        <br>
+            </div>
+          </div>
+          <!-- ./col -->
+
+        </div>
+
+    </div>
+
+</section>
+</div>
+</section>
+
+
+
+
+
+            <!-- /.card -->
+ 
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+ 
+<section class="col-lg-12 connectedSortable">
+            <!-- TO DO List -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="ion ion-clipboard mr-1"></i>
+                  Individual Drive Tracks
+                </h3>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0 tab2">
+                    <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Company logo</th>
+                      <th>Company Name</th>
+                      <th>CTC</th>
+                      <th>Attendance</th>
+                      <th>Written Test</th>
+                      <th>Group Discussion</th>
+                      <th>Tech Round</th>
+                      <th>HR Round</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>10/06/2019</td>
+                      <td><img src="images/IHSMarkit.jpg" alt="ms image" style="width:150px;height:70px;"></td>
+                      <td><span class="badge badge-success">IHS Markit</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5 LPA</div>
+                      </td>
+<?php
+ $query_cdt1 = "select * from gb_dotp_cdt1 where Roll_No='$name'";
+
+$result_cdt1=mysqli_query($con,$query_cdt1);
+
+$c=0;
+$c_C=0;
+$c_E=0;
+$c_A=0;
+$c_W=0;
+$c_G=0;
+$c_T=0;
+$c_H=0;
+while($row_cdt1 = mysqli_fetch_array($result_cdt1))
+{
+    $Company[$c] = $row_cdt1[2];
+    $Elligible[$c] = $row_cdt1[3];
+    $Attendance[$c] = $row_cdt1[4];
+    $WTC[$c] = $row_cdt1[5];
+    $GDC[$c] = $row_cdt1[6];
+    $TRC[$c] = $row_cdt1[7];
+    $HRC[$c] = $row_cdt1[8];
+
+
+?>
+<?php 
+if($c==0)
+{
+  ?>
+                  
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                     
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c==1) { ?>
+                   <tr>
+                      <td>20/07/2019</td>
+                      <td><img src="images/hashedin.jpg" alt="amazon image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Hashed IN</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+                    </tr>
+
+<?php } ?>
+<?php if($c==2) { ?>
+                    <tr>
+                      <td>18/07/2019</td>
+                      <td><img src="images/tcs_codevita.png" alt="ibm image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">TCS CodeVita</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">11 LPA</div>
+                      </td>
+                      
+                     <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+                    </tr>
+<?php } ?>
+<?php if($c==3) { ?>                   
+                   <tr>
+                      <td>18/07/2019</td>
+                      <td><img src="images/tcs digital.jpg" alt="ibm image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">TCS Digital</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                     <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+                    </tr>
+<?php } ?>              
+<?php if($c==4) { ?>      
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/musigma.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Mu-Sigma</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+ <?php } ?>
+ <?php if($c==5) { ?>                   
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/tcs ninja.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">TCS Ninja</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+
+                    </tr>
+<?php } ?>
+<?php if($c==6) { ?>                    
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/infosys.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Infosys</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==7) { ?>                   
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/sachs.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">SACHS</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">5 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==8) { ?>                    
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/juspay.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">JusPay</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">8 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==9) { ?>
+                    <tr>
+                      <td>23/07/2019</td>
+                       <td><img src="images/nineleaps.jpg" alt="netflix image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Nine Leaps</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==10) { ?>                    
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/inszoom.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Inszoom</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==11) { ?>
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/amazon.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Amazon</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">23 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>                    
+<?php if($c==12) { ?>
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/Sabre.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Sabre</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>
+<?php if($c==13) { ?>
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/byjus.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Byjus</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">10 LPA</div>
+                      </td>
+                      
+                      <td><?php echo "{$Attendance[$c]}"; ?></td>
+                       <td><?php echo "{$WTC[$c]}"; ?></td>
+                       <td><?php echo "{$GDC[$c]}"; ?></td>
+                       <td><?php echo "{$TRC[$c]}"; ?></td>
+                       <td><?php echo "{$HRC[$c]}"; ?></td>
+                       
+
+                    </tr>
+<?php } ?>                    
+                    <?php
+                    $c=$c+1;
+                   
+
+                  }
+                  ?>
+                    
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/zensar.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Zensar</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">5 LPA</div>
+                      </td>
+
+<?php
+ $query_cdt2 = "select * from gb_dotp_cdt2 where Roll_No='$name'";
+
+$result_cdt2=mysqli_query($con,$query_cdt2);
+
+$c2=0;
+while($row_cdt2 = mysqli_fetch_array($result_cdt2))
+{
+    $Company[$c2] = $row_cdt2[2];
+    $Attendance[$c2] = $row_cdt2[4];
+    $WTC[$c2] = $row_cdt2[5];
+    $GDC[$c2] = $row_cdt2[6];
+    $TRC[$c2] = $row_cdt2[7];
+    $HRC[$c2] = $row_cdt2[8];
+
+
+?>
+<?php 
+if($c2==0)
+{
+  ?>
+                       <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+                     
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==1) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/darwinbox.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Darwin-Box</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">11 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==2) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/fss.jpeg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">FSS</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5-6 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==3) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/axiscades.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Axis Cades</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==4) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/hpe.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">HPE</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==5) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/nextech.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">NextTech</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==6) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/mphasis.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Mphasis</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==7) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/tally.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Tally</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==8) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/cognizant.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Cognizant</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==9) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/wipro.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Wipro</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==10) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/jk technosoft.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">JK technosoft</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==11) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/CtrlS.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Crtl+S</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php  if($c2==12) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/alkholocks.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Alkholocks</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">1.8 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c2]}"; ?></td>
+                       <td><?php echo "{$WTC[$c2]}"; ?></td>
+                       <td><?php echo "{$GDC[$c2]}"; ?></td>
+                       <td><?php echo "{$TRC[$c2]}"; ?></td>
+                       <td><?php echo "{$HRC[$c2]}"; ?></td>
+
+                    </tr>
+<?php } ?>                   
+<?php $c2=$c2+1; } ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/verizon.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Verizon</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">6 LPA</div>
+                      </td>
+<?php
+ $query_cdt3 = "select * from gb_dotp_cdt3 where Roll_No='$name'";
+
+$result_cdt3=mysqli_query($con,$query_cdt3);
+
+$c3=0;
+while($row_cdt3 = mysqli_fetch_array($result_cdt3))
+{
+    $Company[$c3] = $row_cdt3[2];
+    $Attendance[$c3] = $row_cdt3[4];
+    $WTC[$c3] = $row_cdt3[5];
+    $GDC[$c3] = $row_cdt3[6];
+    $TRC[$c3] = $row_cdt3[7];
+    $HRC[$c3] = $row_cdt3[8];
+
+
+?>
+<?php 
+if($c3==0)
+{
+  ?>
+
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==1) { ?>              
+
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/ibm.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">IBM</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==2) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/youngman.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">YoungMan</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==3) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/cargill.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Cargill</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==4) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/idisha.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Idisha</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==5) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/paygyft.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">PayGyft</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==6) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/lido.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">LIDO</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">10 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==7) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/commvault.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Commvault</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">23 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==8) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/shenzyn.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Shenzyn</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==9) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/upgrad.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">UPGRAD</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">10 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==10) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/codehall.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Code Hall</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==11) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/ig infotech.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">IG Infotech</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c3==12) { ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/Intellipaat.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Intellipaat</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c3]}"; ?></td>
+                       <td><?php echo "{$WTC[$c3]}"; ?></td>
+                       <td><?php echo "{$GDC[$c3]}"; ?></td>
+                       <td><?php echo "{$TRC[$c3]}"; ?></td>
+                       <td><?php echo "{$HRC[$c3]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php $c3=$c3+1; } ?>     
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/tech mahindra.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Tech Mahindra</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+<?php
+ $query_cdt4 = "select * from gb_dotp_cdt4 where Roll_No='$name'";
+
+$result_cdt4=mysqli_query($con,$query_cdt4);
+
+$c4=0;
+while($row_cdt4 = mysqli_fetch_array($result_cdt4))
+{
+    $Company[$c4] = $row_cdt4[2];
+    $Attendance[$c4] = $row_cdt4[4];
+    $WTC[$c4] = $row_cdt4[5];
+    $GDC[$c4] = $row_cdt4[6];
+    $TRC[$c4] = $row_cdt4[7];
+    $HRC[$c4] = $row_cdt4[8];
+
+
+?>
+<?php 
+if($c4==0)
+{
+  ?>
+
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==1) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/johnson controls.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Johnson Control</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.75 LPA</div>
+                      </td>
+                       <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==2) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/collins.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Collins Aerospace</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">5.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==3) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/goldman_sachs.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-danger">Goldman Sachs</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==4) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/uhg.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">UHG</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">7 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==5) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/vedantu.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Vedantu</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==6) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/rave.jpeg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Rave</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">3.5 LPA</div>
+                      </td>
+                     <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==7) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/aliens group.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Aliens Group</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">2 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==8) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/TEK.png" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">TEK Systems</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  if($c4==9) { ?>
+
+                    <tr>
+                      <td>31/07/2019</td>
+                     <td><img src="images/reverie.jpg" alt="google image" style="width:150px;height:100px;"></td>
+                      <td><span class="badge badge-success">Reverie</span></td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">4.5-5.5 LPA</div>
+                      </td>
+                      <td><?php echo "{$Attendance[$c4]}"; ?></td>
+                       <td><?php echo "{$WTC[$c4]}"; ?></td>
+                       <td><?php echo "{$GDC[$c4]}"; ?></td>
+                       <td><?php echo "{$TRC[$c4]}"; ?></td>
+                       <td><?php echo "{$HRC[$c4]}"; ?></td>
+
+                    </tr>
+<?php } ?>  
+<?php  $c4=$c4+1; } ?>
+
+
+
+
+                    
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              
+              <!-- /.card-footer -->
+            </div>
+            <?php require('footer_new.php');?>
+            <!-- /.card -->
+          </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Control Sidebar -->
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+</body>
+</html>

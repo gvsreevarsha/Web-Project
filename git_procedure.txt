@@ -1,0 +1,19 @@
+For contributors
+
+After modifying all the neccessary files GOTo cmd and do the following operations
+
+1.git add . (In case of ALL files)
+
+git add index.php,index1.php (In case of one or two files)
+ 
+2.git commit -m "Comment with major modifications done" 
+
+3.git push -u origin master
+
+For Host
+
+After modifying all the neccessary files GOTo cmd and do the following operations
+
+1.git pull
+
+ 
